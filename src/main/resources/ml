@@ -1,0 +1,1 @@
+docker build -t "yanghuijava/spring-petclinic-mono:1.0.0.RELEASE" --build-arg JAR_FILE=spring-petclinic-1.0.0.RELEASE.jar --platform linux/amd64 .
