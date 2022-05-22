@@ -1,19 +1,15 @@
 version: 2.1
 jobs:
-  build-service:
+  build-and-push:
     docker:
       - image: circleci/openjdk:8u242-jdk
     steps:
       - checkout
+      - setup_remote_docker
       - run: mvn dependency:go-offline
       - run:
           name: Build
           command: mvn clean package -Dmaven.test.skip=true -Ddockerfile.maven.settings.auth=false
-  push-image:
-    docker:
-      - image: circleci/openjdk:8u242-jdk
-    steps:
-      - setup_remote_docker
       - run:
           name: Login to Dockerhub
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -21,9 +17,7 @@ jobs:
           name: Push
           command: mvn dockerfile:push
 workflows:
-  build-flows:
+  build-flow:
     jobs:
-      - build-service
-      - push-image
-
+      - build-and-push
 
