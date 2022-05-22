@@ -19,5 +19,5 @@ jobs:
 workflows:
   build-and-push:
     jobs:
-      - build-and-test
+      - build-and-push
 
