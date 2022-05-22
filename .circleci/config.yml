@@ -16,3 +16,8 @@ jobs:
       - run:
           name: Push
           command: mvn dockerfile:push
+workflows:
+  build-and-push:
+    jobs:
+      - build-and-test
+
