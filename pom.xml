@@ -28,6 +28,8 @@
 
     <!-- Docker build -->
     <dockerfile.plugin.version>1.4.13</dockerfile.plugin.version>
+    
+    <docker.image.tag>${project.version}</docker.image.tag>
 
   </properties>
 
@@ -143,7 +145,7 @@
         </executions>
         <configuration>
           <repository>spring2go/spring-petclinic</repository>
-          <tag>${project.version}</tag>
+          <tag>${docker.image.tag}</tag>
           <!-- 注意在本地.m2/settings.xml中设置dockerhub账号和密码 -->
           <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
           <buildArgs>
