@@ -1,0 +1,52 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: petclinic-deployment
+  labels:
+    app: petclinic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: petclinic
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      containers:
+        - name: petclinic
+          image: yanghuijava/spring-petclinic-mono:1.0.0.RELEASE
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: petclinic
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: petclinic
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: petclinic-nodeport
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      nodePort: 30010
+  selector:
+    app: petclinic
+  type: NodePort
