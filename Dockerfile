@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:8-jre-buster
 MAINTAINER yanghui <672859954@qq.com>
 
 # Add the app itself
