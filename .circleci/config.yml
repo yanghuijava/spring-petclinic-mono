@@ -22,7 +22,7 @@ jobs:
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run:
           name: Push
-          command: docker push yanghuijava/spring-petclinic-mono:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
+          command: docker push "yanghuijava/spring-petclinic-mono:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}"
 workflows:
   build-flow:
     jobs:
