@@ -7,7 +7,7 @@ workflows:
   generate-config:
     jobs:
       - path-filtering/filter:
-          base-revision: master
+          base-revision: << pipeline.git.branch >>
           config-path: .circleci/example.yml
           mapping: |
             src/.* project-one true
