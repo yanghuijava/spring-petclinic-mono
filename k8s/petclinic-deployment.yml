@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: petclinic
-          image: yanghuijava/spring-petclinic-mono:sprint1.0-feature-39
+          image: yanghuijava/spring-petclinic-mono:sprint1.0-feature-75
           imagePullPolicy: Always
           env:
             - name: TZ
