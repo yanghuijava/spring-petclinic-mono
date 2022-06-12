@@ -19,8 +19,6 @@ jobs:
 
 workflows:
   build-1:
-    when:
-      or:
-        - << pipeline.parameters.project-one >>
+    when: << pipeline.parameters.project-one >>
     jobs:
       - project_one
