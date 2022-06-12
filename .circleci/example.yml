@@ -1,0 +1,26 @@
+version: 2.1
+executors:
+  base:
+    docker:
+      - image: circleci/openjdk:8u242-jdk
+
+parameters:
+  project-one:
+    type: boolean
+    default: false
+
+jobs:
+  project_one:
+    executor: base
+    steps:
+      - run:
+          command: |
+            echo "project one"
+
+workflows:
+  build-1:
+    when:
+      or:
+        - << pipeline.parameters.project-one >>
+    jobs:
+      - project_one
