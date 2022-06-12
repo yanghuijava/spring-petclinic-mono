@@ -8,11 +8,8 @@ jobs:
       - setup_remote_docker
       - run: mvn dependency:go-offline
       - run:
-          name: Package
-          command: mvn clean package -Dmaven.test.skip=true -Ddockerfile.skip
-      - run:
           name: Build
-          command: docker buildx build -t ${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM} --platform linux/amd64,linux/arm64,linux/arm64/v8 --build-arg JAR_FILE=spring-petclinic-1.0.0.RELEASE.jar .
+          command: mvn clean package -Dmaven.test.skip=true -Ddocker.image.tag=${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM} -Ddockerfile.maven.settings.auth=false
       - run:
           name: Login to Dockerhub
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
