@@ -1,4 +1,10 @@
 version: 2.1
+
+parameters:
+  build-image:
+    type: boolean
+    default: false
+
 jobs:
   build-and-push:
     docker:
@@ -20,7 +26,9 @@ jobs:
       - run:
           name: BuildAndPush
           command: docker buildx build -t "yanghuijava/spring-petclinic-mono:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}" --platform linux/amd64,linux/arm64/v8 --build-arg JAR_FILE=petclinic.jar . --push
+
 workflows:
   build-flow:
+    when: << pipeline.parameters.build-image >>
     jobs:
       - build-and-push

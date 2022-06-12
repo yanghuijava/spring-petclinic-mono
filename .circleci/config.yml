@@ -7,12 +7,13 @@ workflows:
   generate-config:
     jobs:
       - path-filtering/filter:
+          name: check-updated-files
           base-revision: << pipeline.git.branch >>
-          config-path: .circleci/example.yml
+          config-path: .circleci/continue-config.yml
           mapping: |
-            src/.* project-one true
-            pom.xml project-one true
-            README.md project-one true
-            Dockerfile project-one true
-            .circleci/.* project-one true
-            k8s/* project-one false
+            src/.* build-image true
+            pom.xml build-image true
+            README.md build-image true
+            Dockerfile build-image true
+            .circleci/.* build-image true
+            k8s/* build-image false
