@@ -13,4 +13,5 @@ workflows:
             pom.xml project-one true
             README.md project-one true
             Dockerfile project-one true
+            .circleci/* project-one true
             k8s/* project-one false
