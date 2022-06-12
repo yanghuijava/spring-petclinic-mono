@@ -1,0 +1,26 @@
+version: 2.1
+jobs:
+  build-and-push:
+    docker:
+      - image: circleci/openjdk:8u242-jdk
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: docker version
+      - run: mkdir -vp ~/.docker/cli-plugins/
+      - run: curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.3.1/buildx-v0.3.1.linux-amd64
+      - run: chmod a+x ~/.docker/cli-plugins/docker-buildx
+      - run: mvn dependency:go-offline
+      - run:
+          name: Package
+          command: mvn clean package -Dmaven.test.skip=true -Ddockerfile.skip
+      - run:
+          name: Login to Dockerhub
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run:
+          name: BuildAndPush
+          command: docker buildx build -t "yanghuijava/spring-petclinic-mono:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}" --platform linux/amd64,linux/arm64/v8 --build-arg JAR_FILE=petclinic.jar . --push
+workflows:
+  build-flow:
+    jobs:
+      - build-and-push
