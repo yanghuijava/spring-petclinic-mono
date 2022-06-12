@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
         - name: petclinic
-          image: yanghuijava/spring-petclinic-mono:1.0.0.RELEASE
+          image: yanghuijava/spring-petclinic-mono:sprint1.0-feature-1-arm
+          imagePullPolicy: Always
           env:
             - name: TZ
               value: Asia/Shanghai
