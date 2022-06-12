@@ -15,5 +15,5 @@ workflows:
             pom.xml build-image true
             README.md build-image true
             Dockerfile build-image true
-            .circleci/.* build-image false
+            .circleci/.* build-image true
             k8s/* build-image false
