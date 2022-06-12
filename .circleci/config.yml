@@ -19,10 +19,7 @@ jobs:
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS    
       - run:
           name: BuildAndPush
-          command: docker buildx build -t "yanghuijava/spring-petclinic-mono:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}" --platform linux/amd64,linux/arm64/v8 --build-arg JAR_FILE=spring-petclinic-1.0.0.RELEASE.jar . --push
-      #- run:
-          #name: Push
-          #command: docker push "yanghuijava/spring-petclinic-mono:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}"
+          command: docker buildx build -t "yanghuijava/spring-petclinic-mono:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}" --platform linux/amd64,linux/arm64/v8 --build-arg JAR_FILE=petclinic.jar . --push
 workflows:
   build-flow:
     jobs:
