@@ -6,7 +6,7 @@ workflows:
   generate-config:
     jobs:
       - path-filtering/filter:
-          base-revision: ${CIRCLE_BRANCH}
+          base-revision: "${CIRCLE_BRANCH}"
           config-path: .circleci/example.yml
           mapping: |
             src/.* project-one true
