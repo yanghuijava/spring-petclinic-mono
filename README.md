@@ -1,1 +1,1 @@
-# spring-petclinic-mono-test
+# spring-petclinic-mono
