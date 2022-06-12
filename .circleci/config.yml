@@ -1,4 +1,6 @@
 version: 2.1
+orbs: 
+  path-filtering: circleci/path-filtering@0.1.3
 jobs:
   build-and-push:
     docker:
@@ -24,3 +26,10 @@ workflows:
   build-flow:
     jobs:
       - build-and-push
+          base-revision: main
+          mapping: |
+            src/.* build-code1 true
+            Dockerfile build-code2 true
+            pom.xml build-code3 true
+            README.md build-code4 true
+      
