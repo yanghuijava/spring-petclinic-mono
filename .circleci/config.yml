@@ -6,7 +6,7 @@ workflows:
   generate-config:
     jobs:
       - path-filtering/filter:
-          base-revision: "${CIRCLE_BRANCH}"
+          base-revision: sprint1.0-feature
           config-path: .circleci/example.yml
           mapping: |
             src/.* project-one true
