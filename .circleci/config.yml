@@ -12,13 +12,13 @@ jobs:
           command: mvn clean package -Dmaven.test.skip=true -Ddockerfile.skip
       - run:
           name: Build
-          command: docker buildx build -t ${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM} --platform linux/amd64,linux/arm64,linux/arm64/v8 --build-arg JAR_FILE=spring-petclinic-1.0.0.RELEASE.jar .
+          command: docker build -t "${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}" --build-arg JAR_FILE=spring-petclinic-1.0.0.RELEASE.jar .
       - run:
           name: Login to Dockerhub
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run:
           name: Push
-          command: mvn dockerfile:push -Ddocker.image.tag=${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
+          command: docker push ${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
 workflows:
   build-flow:
     jobs:
