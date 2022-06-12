@@ -6,7 +6,7 @@ orbs:
 parameters:
   branch:
     type: string
-    default: ${CIRCLE_BRANCH}
+    default: "echo ${CIRCLE_BRANCH}"
     
 workflows:
   generate-config:
