@@ -4,7 +4,7 @@ orbs:
   path-filtering: circleci/path-filtering@0.1.3
     
 workflows:
-  generate-config:
+  check-diff:
     jobs:
       - path-filtering/filter:
           name: check-updated-files
@@ -15,5 +15,5 @@ workflows:
             pom.xml build-image true
             README.md build-image true
             Dockerfile build-image true
-            .circleci/.* build-image true
+            .circleci/.* build-image false
             k8s/* build-image false
