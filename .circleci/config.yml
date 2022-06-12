@@ -25,7 +25,7 @@ jobs:
 workflows:
   build-flow:
     jobs:
-      - build-and-push: 
+      - path-filtering/build-and-push: 
           base-revision: main
           mapping: |
             src/.* build-code1 true
