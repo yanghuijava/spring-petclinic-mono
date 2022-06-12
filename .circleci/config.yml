@@ -6,7 +6,7 @@ workflows:
   generate-config:
     jobs:
       - path-filtering/filter:
-          base-revision: main
+          base-revision: origin/master
           config-path: .circleci/example.yml
           mapping: |
             src/.* build-code1 true
