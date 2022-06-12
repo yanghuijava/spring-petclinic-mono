@@ -9,7 +9,7 @@ workflows:
           base-revision: origin/master
           config-path: .circleci/example.yml
           mapping: |
-            src/.* build-code1 true
-            pom.xml build-docs2 true
-            README.md build-docs3 true
-            Dockerfile build-docs4 true
+            src/.* project-one true
+            pom.xml project-one true
+            README.md project-one true
+            Dockerfile project-one true
