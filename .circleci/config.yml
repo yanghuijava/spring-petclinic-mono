@@ -10,20 +10,19 @@ jobs:
       - run: mkdir -vp ~/.docker/cli-plugins/
       - run: curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.3.1/buildx-v0.3.1.linux-amd64
       - run: chmod a+x ~/.docker/cli-plugins/docker-buildx
-      - run: docker buildx version
-      #- run: mvn dependency:go-offline
-      #- run:
-          #name: Package
-          #command: mvn clean package -Dmaven.test.skip=true -Ddockerfile.skip
-      #- run:
-          #name: Build
-          #command: docker build -t "yanghuijava/spring-petclinic-mono:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}" --build-arg JAR_FILE=spring-petclinic-1.0.0.RELEASE.jar .
-      #- run:
-          #name: Login to Dockerhub
-          #command: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      #- run:
-          #name: Push
-          #command: docker push yanghuijava/spring-petclinic-mono:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
+      - run: mvn dependency:go-offline
+      - run:
+          name: Package
+          command: mvn clean package -Dmaven.test.skip=true -Ddockerfile.skip
+      - run:
+          name: Build
+          command: docker buildx build -t "yanghuijava/spring-petclinic-mono:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}" --platform linux/amd64,linux/arm64,linux/arm64/v8 --build-arg JAR_FILE=spring-petclinic-1.0.0.RELEASE.jar .
+      - run:
+          name: Login to Dockerhub
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run:
+          name: Push
+          command: docker push yanghuijava/spring-petclinic-mono:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
 workflows:
   build-flow:
     jobs:
